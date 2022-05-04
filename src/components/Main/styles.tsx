@@ -2,6 +2,7 @@ import { styled } from '@stitches/react'
 
 export const StyledMain = styled('main', {
   alignItems: 'center',
+  backgroundColor: 'rgba(255, 255, 255, 0.2)',
   color: '#fff',
   display: 'flex',
   flexDirection: 'column',
