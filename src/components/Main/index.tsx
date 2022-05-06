@@ -31,11 +31,18 @@ const Main = () => {
 
     try {
       const response = await Api.get(`${input}/json`)
+      verification(response.data)
       setCep(response.data)
       setInput('')
     } catch (error) {
      alert(`Não foi possível encontra o cep: ${input}`)
      setInput('')
+    }
+  }
+
+  function verification (response: Object) {
+    if (Object.keys(response).length === 1) {
+      alert(`O cep: ${input} é inválido`)
     }
   }
 
@@ -50,14 +57,16 @@ const Main = () => {
       <StyledButton onClick={handleSearch}> <SearchOutlined /> </StyledButton>
     </InputDiv>
 
-    <StyledMain>
-      <h2>CEP: {cep.cep}</h2>
+    {Object.keys(cep).length > 6 && (
+      <StyledMain>
+        <h2>CEP: {cep.cep}</h2>
     
-      <span>{cep.logradouro}</span>
-      <span>Complemento: {cep.complemento}</span>
-      <span>{cep.bairro}</span>
-      <span>{cep.localidade} - {cep.uf}</span>
-    </StyledMain>
+        <span>{cep.logradouro}</span>
+        {cep.complemento != "" && ( <span>Complemento: {cep.complemento}</span> )}
+        <span>{cep.bairro}</span>
+        <span>{cep.localidade} - {cep.uf}</span>
+      </StyledMain>
+    )}
     </>
   )
 }

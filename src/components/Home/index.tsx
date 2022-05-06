@@ -1,5 +1,4 @@
 import Container from '../Container/styles'
-import Input from '../Input'
 import Main from '../Main'
 import Title from '../Title'
 
