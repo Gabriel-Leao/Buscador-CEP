@@ -1,53 +1,12 @@
-import { SearchOutlined } from '@ant-design/icons'
-import { useState } from 'react'
-import Api from '../../Services/Api'
-import { InputDiv, StyledButton, StyledInput, StyledMain } from './styles'
+import { useContext } from 'react'
+import { StyledMain } from './styles'
+import { CepContext } from '../../Contexts/CepContext'
 
 const Main = () => {
-  const [input, setInput] = useState('')
-  const [cep, setCep] = useState<any>({})
-
-  async function handleSearch () {
-    if (input === '') {
-      alert('Por favor digite o cep')
-      return
-    }
-
-    try {
-      const response = await Api.get(`${input}/json`)
-      verification(response.data)
-      setCep(response.data)
-      setInput('')
-    } catch (error) {
-      alert(`Não foi possível encontrar o cep: ${input}`)
-      setInput('')
-    }
-  }
-
-  function verification (response: Object) {
-    if (Object.keys(response).length === 1) {
-      alert(`O cep: ${input} é inválido ou não existe.`)
-    }
-  }
-
-  function handlePressEnter (e: React.KeyboardEvent): any {
-    if (e.key === 'Enter') {
-      handleSearch()
-    }
-  }
+  const { cep }:any = useContext(CepContext)
 
   return (
     <>
-      <InputDiv>
-        <StyledInput type="text" 
-          placeholder="00000-000" 
-          value={input} 
-          onChange={ (event) => setInput(event.target.value) }
-          onKeyDown={handlePressEnter}
-        />
-        <StyledButton onClick={handleSearch}> <SearchOutlined /> </StyledButton>
-      </InputDiv>
-
       {
         Object.keys(cep).length > 1 && (
           <StyledMain>

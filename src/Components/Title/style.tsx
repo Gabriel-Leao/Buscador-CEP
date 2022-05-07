@@ -10,7 +10,7 @@ const animation = keyframes({
 })
 
 export const StyledTitle = styled('h1', {
-  fontSize: '40px',
-  color: '#fff',
   animation: `${animation} 2s`,
+  color: '#fff',
+  fontSize: '40px',
 })
