@@ -8,7 +8,7 @@ export const StyledMain = styled('main', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  width: '500px',
+  width: '370px',
 
   '& h2': {
     fontSize: '30px',
